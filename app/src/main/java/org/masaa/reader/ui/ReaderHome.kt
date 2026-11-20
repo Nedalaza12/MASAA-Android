@@ -16,6 +16,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
@@ -80,7 +81,7 @@ fun ReaderHome() {
      val page=bitmap!!
      val imageHeight=maxWidth*(page.height.toFloat()/page.width.toFloat())
      Image(bitmap=page.asImageBitmap(),contentDescription="صفحة الكتاب ${pageIndex+1}",contentScale=ContentScale.Fit,
-      modifier=Modifier.fillMaxWidth().height(imageHeight).transformable(transform)
+      modifier=Modifier.fillMaxWidth().height(imageHeight).graphicsLayer(scaleX=zoom,scaleY=zoom).transformable(transform)
        .pointerInput(pageIndex,page,zoom,uriText) {
         detectTapGestures { tap ->
          if(zoom<=1.02f) {
